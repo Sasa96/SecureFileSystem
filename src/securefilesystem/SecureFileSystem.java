@@ -4,18 +4,16 @@
  * and open the template in the editor.
  */
 package securefilesystem;
-
 /**
  *
  * @author ASUS
  */
 public class SecureFileSystem {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+   public static void main(String[] args) {
+        String key = "Bar12345Bar12345"; // 128 bit key
+        String initVector = "RandomInitVector"; // 16 bytes IV
+
+        System.out.println(AES.encrypt(key, initVector, "Hello World"));
     }
-    
 }
