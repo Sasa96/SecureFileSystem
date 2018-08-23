@@ -24,7 +24,6 @@ public class AES {
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
 
             byte[] encrypted = cipher.doFinal(value.getBytes());
-        
 
             return Base64.encodeBase64String(encrypted);
         } catch (Exception ex) {
