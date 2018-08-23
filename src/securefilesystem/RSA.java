@@ -20,7 +20,7 @@ public class RSA {
         keyPairGenerator.initialize(keySize);
 
         keypair = keyPairGenerator.genKeyPair();
-
+        
     }
 
     public static byte[] encrypt(String message) throws Exception {
