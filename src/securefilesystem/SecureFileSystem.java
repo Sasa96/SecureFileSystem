@@ -8,6 +8,8 @@ package securefilesystem;
 import java.security.InvalidKeyException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import javax.crypto.Cipher;
 
 /**
@@ -16,7 +18,7 @@ import javax.crypto.Cipher;
  */
 public class SecureFileSystem {
 
-   public static void main(String[] args) throws InvalidKeyException {
+   public static void main(String[] args) throws Exception {
         String key = "Bar12345Bar12345"; // 128 bit key
         String initVector = "RandomInitVector"; // 16 bytes IV
 
@@ -44,8 +46,18 @@ public class SecureFileSystem {
             
         };
         
-          
-            
-       
+     // generate public and private keys
+        KeyPair keyPair = RSA.buildKeyPair();
+        PublicKey pubKey = keyPair.getPublic();
+        PrivateKey privateKey = keyPair.getPrivate();
+        
+        // encrypt the message
+        byte [] encrypted = RSA.encrypt(pubKey, "This is a secret message");     
+        System.out.println(new String(encrypted));  // <<encrypted message>>
+        
+        // decrypt the message
+        byte[] secret = RSA.decrypt(privateKey, encrypted);                                 
+        System.out.println(new String(secret));     // This is a secret message
+
     }
 }
