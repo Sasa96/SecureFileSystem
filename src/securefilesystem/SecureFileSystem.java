@@ -52,7 +52,7 @@ public class SecureFileSystem {
         PrivateKey privateKey = keyPair.getPrivate();
         
         // encrypt the message
-        byte [] encrypted = RSA.encrypt(pubKey, "This is a secret message");     
+        byte [] encrypted = RSA.encrypt(pubKey, "daia");     
         System.out.println(new String(encrypted));  // <<encrypted message>>
         
         // decrypt the message
