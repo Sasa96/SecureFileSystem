@@ -13,12 +13,8 @@ import java.io.*;
  */
 public class FileHandler {
 
-    public static String ReadFile(String fileName) {
+    public static String ReadFile(String fileName,boolean HasHeader) {
 
-        // The name of the file to open.
-        String extention = fileName.substring(fileName.length() - 7);
-        boolean secretFile = extention.equals(".kksasa") ? true : false;
-        // This will reference one line at a time
         String line = null;
         String text = "";
 
@@ -31,7 +27,7 @@ public class FileHandler {
             BufferedReader bufferedReader
                     = new BufferedReader(fileReader);
 
-            if (secretFile) {
+            if (HasHeader) {
                 for (int i = 1; i <= 4; i++) {
                     bufferedReader.readLine();
                 }
@@ -59,14 +55,12 @@ public class FileHandler {
         return text;
     }
 
-    public static void WriteFile(String text, String fileName) {
+    public static void WriteFile(String text, String fileName,boolean putHeader) {
         
         // The name of the file to open.
 
-        String extention = fileName.substring(fileName.length() - 7);
-        boolean secretFile = extention.equals(".kksasa") ? true : false;
         String header = "";
-        if (!secretFile) {
+        if (putHeader) {
             header = "creator ID: \n"
                     + "creator email: \n"
                     + "file size: \n"

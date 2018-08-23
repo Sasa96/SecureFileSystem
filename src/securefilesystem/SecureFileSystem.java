@@ -23,13 +23,13 @@ public class SecureFileSystem {
         String initVector = "RandomInitVector"; // 16 bytes IV
 
         RSA.buildKeyPair(); //called by a button in GUI
-        String text = FileHandler.ReadFile("tmp.txt");
+        String text = FileHandler.ReadFile("tmp.txt",false);
         byte[] encrypted = RSA.encrypt(text);
-        FileHandler.WriteFile(new String(encrypted),"encryption.kksasa");
+        FileHandler.WriteFile(new String(encrypted),"encryption.kksasa",true);
        
         
-        String test_encryption = FileHandler.ReadFile("encryption.kksasa");
-        byte[] decryption = test_encryption.getBytes();
+        //String test_encryption = FileHandler.ReadFile("encryption.kksasa");
+        //byte[] decryption = test_encryption.getBytes();
         //byte[] secret = RSA.decrypt(decryption);
         //FileHandler.WriteFile(new String(secret),"decryption.txt");
 
