@@ -13,7 +13,7 @@ import java.io.*;
  */
 public class FileHandler {
 
-    public static String ReadFile(String fileName,boolean HasHeader) {
+    public static String ReadFile(String fileName, boolean HasHeader) {
 
         String line = null;
         String text = "";
@@ -37,6 +37,8 @@ public class FileHandler {
             while ((line = bufferedReader.readLine()) != null) {
                 text = text + line + "\n";
             }
+            //remove last \n
+            text = text.substring(0, text.length() - 1);
 
             // Always close files.
             bufferedReader.close();
@@ -55,10 +57,9 @@ public class FileHandler {
         return text;
     }
 
-    public static void WriteFile(String text, String fileName,boolean putHeader) {
-        
-        // The name of the file to open.
+    public static void WriteFile(String text, String fileName, boolean putHeader) {
 
+        // The name of the file to open.
         String header = "";
         if (putHeader) {
             header = "creator ID: \n"
@@ -77,8 +78,10 @@ public class FileHandler {
 
             // Note that write() does not automatically
             // append a newline character.
-            bufferedWriter.write(header);
-            bufferedWriter.newLine();
+            if (putHeader) {
+                bufferedWriter.write(header);
+                bufferedWriter.newLine();
+            }
             bufferedWriter.write(text);
 
             // Always close files.

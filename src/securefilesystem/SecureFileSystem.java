@@ -24,14 +24,13 @@ public class SecureFileSystem {
 
         RSA.buildKeyPair(); //called by a button in GUI
         String text = FileHandler.ReadFile("tmp.txt",false);
-        byte[] encrypted = RSA.encrypt(text);
-        FileHandler.WriteFile(new String(encrypted),"encryption.kksasa",true);
+        String encrypted = AES.encrypt(key, initVector, text);
+        FileHandler.WriteFile(encrypted,"encryption.kksasa",true);
        
         
-        //String test_encryption = FileHandler.ReadFile("encryption.kksasa");
-        //byte[] decryption = test_encryption.getBytes();
-        //byte[] secret = RSA.decrypt(decryption);
-        //FileHandler.WriteFile(new String(secret),"decryption.txt");
+        String test_encryption = FileHandler.ReadFile("encryption.kksasa",true);
+        String secret = AES.decrypt(key, initVector, test_encryption);
+        FileHandler.WriteFile(secret,"decryption.txt",false);
 
     }
 }
