@@ -24,35 +24,59 @@ public class RSA {
         keyPairGenerator.initialize(keySize);
 
         keypair = keyPairGenerator.genKeyPair();
-        saveKeypair(keypair.getPublic(),keypair.getPrivate());
-        
+        saveKey(keypair.getPublic(), keypair.getPrivate(), null,null);
 
     }
 
     public static byte[] encrypt(String message, PublicKey pub) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, pub);
-
-        return cipher.doFinal(message.getBytes());
+        byte[] efk = cipher.doFinal(message.getBytes());
+        saveKey(null,null,efk,null);
+        return efk;
     }
 
-    public static byte[] decrypt(byte[] encrypted,PrivateKey pvt) throws Exception {
+    public static byte[] decrypt(byte[] encrypted, PrivateKey pvt) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, pvt);
-
-        return cipher.doFinal(encrypted);
+        byte[] dfk = cipher.doFinal(encrypted);
+        saveKey(null,null,null,dfk);
+        return dfk;
     }
 
-    public static void saveKeypair(PublicKey pub, PrivateKey pvt) {
+    public static void saveKey(PublicKey pub, PrivateKey pvt, byte[] efk,byte[] dfk) {
         FileOutputStream out = null;
         try {
-            String outFile = "mykey";
-            out = new FileOutputStream(outFile + ".key");
-            out.write(pvt.getEncoded());
-            out.close();
-            out = new FileOutputStream(outFile + ".pub");
-            out.write(pub.getEncoded());
-            out.close();
+
+            if (pub != null) {
+                out = new FileOutputStream("mykey" + ".key");
+                out.write(pvt.getEncoded());
+                out.close();
+            }
+            if (pvt != null) {
+                out = new FileOutputStream("mykey" + ".pub");
+                out.write(pub.getEncoded());
+                out.close();
+            }
+
+            if (efk != null) {
+                out = new FileOutputStream("efk" + ".fk");
+                ObjectOutputStream outobj = new ObjectOutputStream(out);
+                outobj.writeObject(efk);
+                outobj.close();
+                out.close();
+
+            }
+            
+            if (dfk != null) {
+                out = new FileOutputStream("dfk" + ".fk");
+                ObjectOutputStream outobj = new ObjectOutputStream(out);
+                outobj.writeObject(dfk);
+                outobj.close();
+                out.close();
+
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(RSA.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,15 +92,15 @@ public class RSA {
             X509EncodedKeySpec ks = new X509EncodedKeySpec(bytes);
             KeyFactory kf = KeyFactory.getInstance("RSA");
             PublicKey pub = kf.generatePublic(ks);
-                    return pub;
+            return pub;
 
         } catch (Exception ex) {
         }
-        
+
         return null;
     }
-    
-     public static PrivateKey LoadPvt(String PvtPath) {
+
+    public static PrivateKey LoadPvt(String PvtPath) {
         try {
             Path path = Paths.get(PvtPath);
             byte[] bytes = Files.readAllBytes(path);
@@ -92,4 +116,22 @@ public class RSA {
 
         return null;
     }
+
+    public static byte[] LoadFileKey(String fkpath) {
+        
+        byte[] fk = null;
+        
+        try {
+            FileInputStream fileIn = new FileInputStream(fkpath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            fk = (byte[]) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (Exception i) {
+            i.printStackTrace();
+        }
+        
+        return fk;
+    }
+
 }
