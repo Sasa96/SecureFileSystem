@@ -1,13 +1,21 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package securefilesystem;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-
 import org.apache.commons.codec.binary.Base64;
 
-public class SecureFileSystem {
-    public static String encrypt(String key, String initVector, String value) {
+/**
+ *
+ * @author kord
+ */
+public class AES {
+        public static String encrypt(String key, String initVector, String value) {
         try {
             IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
             SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
@@ -16,8 +24,6 @@ public class SecureFileSystem {
             cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
 
             byte[] encrypted = cipher.doFinal(value.getBytes());
-            System.out.println(
-                     Base64.encodeBase64String(encrypted));
 
             return Base64.encodeBase64String(encrypted);
         } catch (Exception ex) {
@@ -27,7 +33,7 @@ public class SecureFileSystem {
         return null;
     }
 
-    public static String decrypt(String key, String initVector, String encrypted) {
+        public static String decrypt(String key, String initVector, String encrypted) {
         try {
             IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
             SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
@@ -45,11 +51,5 @@ public class SecureFileSystem {
         return null;
     }
 
-    public static void main(String[] args) {
-        String key = "Bar12345Bar12345"; // 128 bit key
-        String initVector = "RandomInitVector"; // 16 bytes IV
-
-        System.out.println(decrypt(key, initVector,
-                encrypt(key, initVector, "Hello World")));
-    }
+    
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="474.0" prefWidth="718.0" style="-fx-background-color: #FFFFFF; -fx-background-image: url(C:\Users\ASUS\Documents\NetBeansProjects\SecureFileSys\src\securefilesys\sec.jpg);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="securefilesys.SecureFileSys">
+    <children>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <ImageView fitHeight="474.0" fitWidth="731.0" layoutX="-8.0">
+         <image>
+            <Image url="@sec.jpg" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="uploadBtn" layoutX="292.0" layoutY="141.0" onAction="#UploadFile" prefHeight="49.0" prefWidth="135.0" style="-fx-background-color: #5DFC0A#5DFC0A;" text="Upload File" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="259.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@SecureImg.png" />
+         </image>
+      </ImageView>
+     
+    </children>
+</AnchorPane>
