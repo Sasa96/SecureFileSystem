@@ -20,17 +20,14 @@ public class SecureFileSystem {
 
     public static void main(String[] args) throws Exception {
         String key = "Bar12345Bar12345"; // 128 bit key
-        String initVector = "RandomInitVector"; // 16 bytes IV
-
+        //String initVector = "RandomInitVector"; // 16 bytes IV
         RSA.buildKeyPair(); //called by a button in GUI
-        String text = FileHandler.ReadFile("tmp.txt",false);
-        String encrypted = AES.encrypt(key, initVector, text);
-        FileHandler.WriteFile(encrypted,"encryption.kksasa",true);
-       
+        PublicKey pub = RSA.LoadPub("mykey.pub");
+        PrivateKey pvt = RSA.LoadPvt("mykey.key");
+        byte[] encrypted = RSA.encrypt(key, pub);
+        byte[] decrypted = RSA.decrypt(encrypted,pvt);
         
-        String test_encryption = FileHandler.ReadFile("encryption.kksasa",true);
-        String secret = AES.decrypt(key, initVector, test_encryption);
-        FileHandler.WriteFile(secret,"decryption.txt",false);
-
+        System.out.println(new String (decrypted));
+        
     }
 }
