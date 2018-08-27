@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="474.0" prefWidth="718.0" style="-fx-background-color: #FFFFFF; -fx-background-image: url(C:\Users\ASUS\Documents\NetBeansProjects\SecureFileSys\src\securefilesys\sec.jpg);" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="securefilesystem.SecureFileSys">
+    <children>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <ImageView fitHeight="474.0" fitWidth="731.0" layoutX="-8.0">
+         <image>
+            <Image url="@sec.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="263.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@SecureImg.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="uploadBtn" layoutX="256.0" layoutY="131.0" onAction="#UploadFile" prefHeight="49.0" prefWidth="215.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Upload File" textFill="#005eff" />
+      <JFXButton fx:id="uploadBtn1" layoutX="256.0" layoutY="188.0" onAction="#GenerateKey" prefHeight="49.0" prefWidth="215.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Generate Public/Private Keys" textFill="#005eff" />
+      <Label fx:id="publicLabel" layoutX="191.0" layoutY="303.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
+      <Label fx:id="rngLabel" layoutX="191.0" layoutY="348.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
+      <JFXButton fx:id="publicButton" layoutX="14.0" layoutY="298.0" onAction="#SelectPublicKey" prefHeight="31.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select Public Key" textFill="#005eff" />
+      <JFXButton fx:id="rngButton" layoutX="14.0" layoutY="343.0" onAction="#SelectRng1" prefHeight="21.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select RNG key" textFill="#005eff" />
+      <JFXButton fx:id="encryptRngButton" layoutX="14.0" layoutY="387.0" onAction="#EncryptRng" prefHeight="42.0" prefWidth="271.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Encrypt RNG key with Public Key" textFill="#005eff" />
+      <JFXButton fx:id="uploadBtn22" layoutX="406.0" layoutY="298.0" onAction="#UploadFile" prefHeight="31.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select Public Key" textFill="#005eff" />
+      <Label layoutX="14.0" layoutY="248.0" text="Ecnrypting RNG" textFill="#c9c9c9">
+         <font>
+            <Font name="Britannic Bold" size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="413.0" layoutY="248.0" text="Decrypting RNG" textFill="#c9c9c9">
+         <font>
+            <Font name="Britannic Bold" size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="privateLabel" layoutX="576.0" layoutY="303.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
+      <JFXButton fx:id="privateButton" layoutX="398.0" layoutY="298.0" onAction="#SelectPrivateKey" prefHeight="31.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select Private Key" textFill="#005eff" />
+      <JFXButton fx:id="rng2Button" layoutX="398.0" layoutY="343.0" onAction="#SelectRng2" prefHeight="21.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select Enc. RNG key" textFill="#005eff" />
+      <JFXButton fx:id="decryptRngButton" layoutX="398.0" layoutY="387.0" onAction="#DecryptRng" prefHeight="42.0" prefWidth="271.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Decrypt RNG Key with Private Key" textFill="#005eff" />
+      <Label fx:id="rng2Label" layoutX="576.0" layoutY="348.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
+     
+    </children>
+</AnchorPane>

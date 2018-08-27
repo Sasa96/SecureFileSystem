@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="SecureFileSys.jnlp">
+  <information>
+    <title>SecureFileSys</title>
+    <vendor>ASUS</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="SecureFileSys.jar" size="506716" download="eager" />
+    <jar href="lib\commons-codec-1.11-javadoc.jar" size="485173" download="eager" />
+    <jar href="lib\commons-codec-1.11-sources.jar" size="342809" download="eager" />
+    <jar href="lib\commons-codec-1.11-test-sources.jar" size="192564" download="eager" />
+    <jar href="lib\commons-codec-1.11-tests.jar" size="281898" download="eager" />
+    <jar href="lib\commons-codec-1.11.jar" size="335042" download="eager" />
+    <jar href="lib\jfoenix-1.9.1.jar" size="2384613" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="SecureFileSys" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="securefilesystem.SecureFileSys"  name="SecureFileSys" />
+  <update check="always"/>
+</jnlp>
