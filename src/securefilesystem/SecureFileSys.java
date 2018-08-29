@@ -16,11 +16,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.security.InvalidKeyException;
+import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -30,6 +32,7 @@ import javafx.stage.FileChooser;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 
 /**
@@ -61,6 +64,9 @@ public class SecureFileSys extends Application {
     
      @FXML 
      public Label rng2Label= new Label("");
+     
+          @FXML 
+     public Label EncryptedFileLabel= new Label("");
     @FXML 
      public JFXButton decryptRngButton;
     
@@ -68,6 +74,9 @@ public class SecureFileSys extends Application {
     public File rng1File = null;
     public File privateFile =null;
     public File rng2File = null;
+    public File EncryptedFile = null;
+   
+    
     
    public void AshourUpload()
    {System.out.println(1);
@@ -83,7 +92,16 @@ public class SecureFileSys extends Application {
    {System.out.println(3);
        
    }
-     
+    
+ 
+  
+
+   
+   public void SelectEncryptedFile()
+   {
+       EncryptedFile =  SelectFile(EncryptedFileLabel);
+   }
+   
    public void EncryptRng() throws Exception
    {
          System.out.println(publicFile);
@@ -95,12 +113,30 @@ public class SecureFileSys extends Application {
    
    }
    
-   public void DecryptRng() throws Exception
+   public void DecryptFile() throws Exception
    {
        PrivateKey privk = RSA.LoadPvt(privateFile.getAbsolutePath());
-       System.out.println(rng2File);
+       
+      
     byte[] rngKey = RSA.LoadFileKey(rng2File);
-    RSA.decrypt(rngKey, privk);
+    
+    byte [] byteKey = RSA.decrypt(rngKey, privk);
+    
+    SecretKey decryptedKey = new SecretKeySpec(byteKey, 0, byteKey.length, "AES");
+    
+  
+  
+        
+        KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+      ; 
+      
+      String EncryptedFileString = FileHandler.ReadFile(EncryptedFile.getAbsolutePath(), true);
+      
+      String DecryptedFileString = AES.decrypt(decryptedKey ,"RandomInitVector",EncryptedFileString);
+      
+       FileHandler.WriteFile(DecryptedFileString,"DecryptedFile.txt", false);
+       
+        
    }
     
     public void SelectPublicKey ()
@@ -121,7 +157,7 @@ public class SecureFileSys extends Application {
        rng2File = SelectFile(rng2Label);
     }
     
-    
+  
      
      
   
@@ -146,7 +182,7 @@ public class SecureFileSys extends Application {
 if (selectedFile != null) {
         
          
-        String initVector = "RandomInitVector"; // 16 bytes IV
+        
         KeyGenerator keyGen = KeyGenerator.getInstance("AES");
         //keyGen.init(128); // for example
         
@@ -159,13 +195,13 @@ if (selectedFile != null) {
         
       
      
-        String encrypted = securefilesystem.AES.encrypt(secretKey,initVector,new String(text));
+        String encrypted = securefilesystem.AES.encrypt(secretKey,"RandomInitVector",new String(text));
      
         securefilesystem.FileHandler.WriteFile(encrypted,"encryption.kksasa",true);
  
         String test_encryption = securefilesystem.FileHandler.ReadFile("encryption.kksasa",true); 
-        String secret = securefilesystem.AES.decrypt(secretKey, initVector, test_encryption);
-        securefilesystem.FileHandler.WriteFile(secret,"decryption.txt",false);
+        String secret = securefilesystem.AES.decrypt(secretKey, "RandomInitVector", test_encryption);
+       // securefilesystem.FileHandler.WriteFile(secret,"decryption.txt",false);
 }
          }catch(Exception e)
          {};

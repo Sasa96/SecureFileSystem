@@ -52,7 +52,7 @@ public class RSA {
         byte[] dfk = cipher.doFinal(encrypted);
         String test = new String (dfk);
         System.out.println("RSA decrypted: " + test);
-        saveKey(null,null,null,dfk);
+       // saveKey(null,null,null,dfk);
         return dfk;
     }
 

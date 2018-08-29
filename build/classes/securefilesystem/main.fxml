@@ -22,35 +22,33 @@
       </ImageView>
       <JFXButton fx:id="uploadBtn" layoutX="19.0" layoutY="75.0" onAction="#UploadFile" prefHeight="49.0" prefWidth="215.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Upload File" textFill="#005eff" />
       <JFXButton fx:id="uploadBtn1" layoutX="14.0" layoutY="137.0" onAction="#GenerateKey" prefHeight="49.0" prefWidth="215.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Generate Public/Private Keys" textFill="#005eff" />
-      <Label fx:id="publicLabel" layoutX="181.0" layoutY="348.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
-      <Label fx:id="rngLabel" layoutX="181.0" layoutY="388.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
-      <JFXButton fx:id="publicButton" layoutX="14.0" layoutY="343.0" onAction="#SelectPublicKey" prefHeight="31.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select Public Key" textFill="#005eff" />
-      <JFXButton fx:id="rngButton" layoutX="14.0" layoutY="383.0" onAction="#SelectRng1" prefHeight="21.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select File key" textFill="#005eff" />
-      <JFXButton fx:id="encryptRngButton" layoutX="16.0" layoutY="418.0" onAction="#EncryptRng" prefHeight="42.0" prefWidth="271.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Encrypt File key with Public Key" textFill="#005eff" />
-      <JFXButton fx:id="uploadBtn22" layoutX="240.0" layoutY="237.0" onAction="#UploadFile" prefHeight="31.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select File Key" textFill="#005eff" />
-      <Label layoutX="14.0" layoutY="287.0" text="Ecnrypting RNG" textFill="#c9c9c9">
+      <Label fx:id="publicLabel" layoutX="181.0" layoutY="313.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
+      <Label fx:id="rngLabel" layoutX="181.0" layoutY="359.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
+      <JFXButton fx:id="publicButton" layoutX="14.0" layoutY="308.0" onAction="#SelectPublicKey" prefHeight="31.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select Public Key" textFill="#005eff" />
+      <JFXButton fx:id="rngButton" layoutX="14.0" layoutY="354.0" onAction="#SelectRng1" prefHeight="21.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select File key" textFill="#005eff" />
+      <JFXButton fx:id="encryptRngButton" layoutX="16.0" layoutY="393.0" onAction="#EncryptRng" prefHeight="42.0" prefWidth="271.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Encrypt File key with Public Key" textFill="#005eff" />
+      <Label layoutX="14.0" layoutY="248.0" text="Ecnrypting RNG" textFill="#c9c9c9">
          <font>
             <Font name="Britannic Bold" size="40.0" />
          </font>
       </Label>
-      <Label layoutX="383.0" layoutY="287.0" text="Decrypting RNG" textFill="#c9c9c9">
+      <Label layoutX="404.0" layoutY="248.0" text="Decrypting File" textFill="#c9c9c9">
          <font>
             <Font name="Britannic Bold" size="40.0" />
          </font>
       </Label>
-      <Label fx:id="privateLabel" layoutX="413.0" layoutY="197.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
+      <Label fx:id="EncryptedFileLabel" layoutX="552.0" layoutY="302.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
       <JFXButton fx:id="privateButton" layoutX="383.0" layoutY="343.0" onAction="#SelectPrivateKey" prefHeight="31.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select Private Key" textFill="#005eff" />
       <JFXButton fx:id="rng2Button" layoutX="383.0" layoutY="383.0" onAction="#SelectRng2" prefHeight="21.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select Enc. File key" textFill="#005eff" />
-      <JFXButton fx:id="decryptRngButton" layoutX="383.0" layoutY="418.0" onAction="#DecryptRng" prefHeight="42.0" prefWidth="271.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Decrypt File Key with Private Key" textFill="#005eff" />
+      <JFXButton fx:id="decryptRngButton" layoutX="383.0" layoutY="418.0" onAction="#DecryptFile" prefHeight="42.0" prefWidth="271.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Decrypt File" textFill="#005eff" />
       <Label fx:id="rng2Label" layoutX="552.0" layoutY="388.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
-      <Label layoutX="240.0" layoutY="141.0" text="Decrypting File" textFill="#ddd1d1">
+      <Label layoutX="240.0" layoutY="141.0" textFill="#ddd1d1">
          <font>
             <Font name="Britannic Bold" size="40.0" />
          </font>
       </Label>
-      <JFXButton fx:id="privateButton1" layoutX="240.0" layoutY="192.0" onAction="#SelectPrivateKey" prefHeight="31.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select Encrypted File" textFill="#005eff" />
-      <Label fx:id="privateLabel1" layoutX="552.0" layoutY="348.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
-      <Label fx:id="privateLabel11" layoutX="413.0" layoutY="242.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
+      <JFXButton fx:id="privateButton1" layoutX="383.0" layoutY="297.0" onAction="#SelectEncryptedFile" prefHeight="31.0" prefWidth="162.0" ripplerFill="#1239d700" style="-fx-background-color: #000000;" text="Select Encrypted File" textFill="#005eff" />
+      <Label fx:id="privateLabel" layoutX="552.0" layoutY="348.0" prefHeight="21.0" prefWidth="130.0" style="-fx-background-color: #FFFFFF;" />
       <Label layoutX="519.0" layoutY="-6.0" text="Ashour" textFill="#ddd1d1">
          <font>
             <Font name="Britannic Bold" size="40.0" />

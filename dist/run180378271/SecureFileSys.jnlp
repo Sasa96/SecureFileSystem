@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SecureFileSys.jar" size="507348" download="eager" />
+    <jar href="SecureFileSys.jar" size="507353" download="eager" />
     <jar href="lib\commons-codec-1.11-javadoc.jar" size="485173" download="eager" />
     <jar href="lib\commons-codec-1.11-sources.jar" size="342809" download="eager" />
     <jar href="lib\commons-codec-1.11-test-sources.jar" size="192564" download="eager" />
