@@ -199,8 +199,6 @@ if (selectedFile != null) {
      
         securefilesystem.FileHandler.WriteFile(encrypted,"encryption.kksasa",true);
  
-        String test_encryption = securefilesystem.FileHandler.ReadFile("encryption.kksasa",true); 
-        String secret = securefilesystem.AES.decrypt(secretKey, "RandomInitVector", test_encryption);
        // securefilesystem.FileHandler.WriteFile(secret,"decryption.txt",false);
 }
          }catch(Exception e)
