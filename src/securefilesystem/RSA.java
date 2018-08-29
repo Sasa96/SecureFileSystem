@@ -38,17 +38,20 @@ public class RSA {
       /*  cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding");
         cipher.init(Cipher.DECRYPT_MODE, pvt);
         byte[] dfk = cipher.doFinal(efk);*/
-        
+      String test = new String (message);
+        System.out.println("RSA encrypted: " + test);
         
         saveKey(null,null,efk,null);
         return efk;
     }
 
     public static byte[] decrypt(byte[] encrypted, PrivateKey pvt) throws Exception {
-        System.out.println(encrypted.length);
+        System.out.println("loaded length: " + encrypted.length);
         Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding");
         cipher.init(Cipher.DECRYPT_MODE, pvt);
         byte[] dfk = cipher.doFinal(encrypted);
+        String test = new String (dfk);
+        System.out.println("RSA decrypted: " + test);
         saveKey(null,null,null,dfk);
         return dfk;
     }
@@ -69,11 +72,16 @@ public class RSA {
             }
 
             if (efk != null) {
-                out = new FileOutputStream("efk" + ".fk");
-                ObjectOutputStream outobj = new ObjectOutputStream(out);
-                outobj.writeObject(efk);
-                outobj.close();
-                out.close();
+                FileOutputStream stream = new FileOutputStream("efk"+".fk");
+    try {
+    stream.write(efk);
+} finally {
+    stream.close();
+}
+              //  outobj.writeObject(efk);
+              
+                stream.close();
+       
 
             }
             
@@ -133,7 +141,6 @@ public class RSA {
         
         try {
             fileContent = Files.readAllBytes(file.toPath());
- 
                 
         } catch (Exception i) {
             System.out.println("L");
