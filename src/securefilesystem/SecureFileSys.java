@@ -68,6 +68,21 @@ public class SecureFileSys extends Application {
     public File rng1File = null;
     public File privateFile =null;
     public File rng2File = null;
+    
+   public void AshourUpload()
+   {System.out.println(1);
+       
+   }
+   
+   public void AshourDownload()
+   {
+       System.out.println(2);
+   }
+   
+   public void AshourList()
+   {System.out.println(3);
+       
+   }
      
    public void EncryptRng() throws Exception
    {
