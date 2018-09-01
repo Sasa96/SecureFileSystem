@@ -57,13 +57,13 @@ public class FileHandler {
         return text;
     }
 
-    public static void WriteFile(String text, String fileName, boolean putHeader) {
+    public static void WriteFile(String text, String fileName, String CreatorID, String CreatorMail, boolean putHeader) {
 
         // The name of the file to open.
         String header = "";
         if (putHeader) {
-            header = "creator ID: \n"
-                    + "creator email: \n"
+            header = "creator ID: " + CreatorID + "\n"
+                    + "creator email:" + CreatorMail + "\n"
                     + "file size: \n"
                     + "----------------------";
         }

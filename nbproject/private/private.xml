@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/kord/SecureFileSystem/src/securefilesystem/SecureFileSys.java</file>
-            <file>file:/home/kord/SecureFileSystem/src/securefilesystem/testModule.java</file>
+            <file>file:/C:/Users/KhaledKord/Documents/GitHub/SecureFileSystem/src/securefilesystem/ManageFileController.java</file>
+            <file>file:/C:/Users/KhaledKord/Documents/GitHub/SecureFileSystem/src/securefilesystem/SecureFileSys.java</file>
+            <file>file:/C:/Users/KhaledKord/Documents/GitHub/SecureFileSystem/src/securefilesystem/RSA.java</file>
+            <file>file:/C:/Users/KhaledKord/Documents/GitHub/SecureFileSystem/src/securefilesystem/FileHandler.java</file>
+            <file>file:/C:/Users/KhaledKord/Documents/GitHub/SecureFileSystem/src/securefilesystem/AES.java</file>
         </group>
     </open-files>
 </project-private>

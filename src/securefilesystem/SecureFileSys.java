@@ -180,7 +180,7 @@ window.show();
       
       String DecryptedFileString = AES.decrypt(decryptedKey ,"RandomInitVector",EncryptedFileString);
       
-       FileHandler.WriteFile(DecryptedFileString,"DecryptedFile.txt", false);
+       FileHandler.WriteFile(DecryptedFileString,"DecryptedFile.txt","","", false);
          JFXSnackbar snackbar = new JFXSnackbar(anchorpane);
            snackbar.show("Generated Decrypted File", 2000);
         
@@ -248,10 +248,10 @@ if (selectedFile != null) {
         String text = securefilesystem.FileHandler.ReadFile(fileName,false);
         
       
-     
+        
         String encrypted = securefilesystem.AES.encrypt(secretKey,"RandomInitVector",new String(text));
      
-        securefilesystem.FileHandler.WriteFile(encrypted,"encryption.kksasa",true);
+        securefilesystem.FileHandler.WriteFile(encrypted,fileName + ".kksasa",ManageFileController.userId,ManageFileController.userEmail,true);
  
        // securefilesystem.FileHandler.WriteFile(secret,"decryption.txt",false);
        JFXSnackbar snackbar = new JFXSnackbar(anchorpane);

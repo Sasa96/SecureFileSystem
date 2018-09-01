@@ -8,3 +8,9 @@ encryption.kksasa
 dgfdfg.txt
 upload_data.txt
 upload_path.txt
+mytest.txt
+mytest.txt.kksasa
+test.txt.kksasa
+kakaaaaaa.kksasa
+test.kksasa
+security.kksasa
