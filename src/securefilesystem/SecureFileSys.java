@@ -6,7 +6,10 @@
 package securefilesystem;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSnackbar;
+
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import javafx.application.Application;
@@ -25,10 +28,18 @@ import java.security.SecureRandom;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -42,7 +53,6 @@ import javax.crypto.spec.SecretKeySpec;
 public class SecureFileSys extends Application {
     Stage window;
     Scene mainView , interfacesView;
-    @FXML
      public JFXButton uploadBtn;
    
     @FXML 
@@ -67,54 +77,90 @@ public class SecureFileSys extends Application {
      
           @FXML 
      public Label EncryptedFileLabel= new Label("");
-    @FXML 
-     public JFXButton decryptRngButton;
     
+     @FXML 
+     public JFXButton decryptRngButton;
+      
+
+      
     public File publicFile = null;
     public File rng1File = null;
     public File privateFile =null;
     public File rng2File = null;
     public File EncryptedFile = null;
+    @FXML
+    private Label label;
+    @FXML
+    private JFXButton uploadBtn1;
+    @FXML
+    private JFXButton privateButton1;
+    @FXML
+    private JFXButton uploadBtn241;
+    @FXML
+    private AnchorPane anchorpane;
    
     
     
-   public void AshourUpload()
-   {System.out.println(1);
-       
-   }
    
-   public void AshourDownload()
+   
+    @FXML
+   public void ManageDriveFiles (ActionEvent event) throws Exception
    {
-       System.out.println(2);
+       
+Parent root = FXMLLoader.load(getClass().getResource("ManageFiles.fxml"));
+Scene manageView = new Scene(root);
+manageView.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
+Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+window.setScene(manageView);
+window.show();
    }
    
-   public void AshourList()
-   {System.out.println(3);
-       
-   }
-    
+   
+ 
  
   
 
    
+    @FXML
    public void SelectEncryptedFile()
    {
        EncryptedFile =  SelectFile(EncryptedFileLabel);
    }
    
+    @FXML
    public void EncryptRng() throws Exception
    {
+       if(publicFile==null || rng1File==null)
+       {
+             JFXSnackbar snackbar = new JFXSnackbar(anchorpane);
+               
+            snackbar.show("Please Select RNG File and Public Key", 2000);
+           return;
+       }
          System.out.println(publicFile);
     PublicKey pubk = RSA.LoadPub(publicFile.getAbsolutePath());
     
     byte[] rngKey = RSA.LoadFileKey(rng1File);
    
     RSA.encrypt(rngKey, pubk/*,RSA.LoadPvt(privateFile.getAbsolutePath())*/);
+       JFXSnackbar snackbar = new JFXSnackbar(anchorpane);
+               
+    snackbar.show("Generated Encrypted RNG File", 2000);
+    
    
    }
    
+    @FXML
    public void DecryptFile() throws Exception
    {
+       if(privateFile==null || rng2File==null || EncryptedFile==null)
+       {
+             JFXSnackbar snackbar = new JFXSnackbar(anchorpane);
+               
+            snackbar.show("Please Select All 3 files", 2000);
+           return;
+       }
+       
        PrivateKey privk = RSA.LoadPvt(privateFile.getAbsolutePath());
        
       
@@ -135,24 +181,29 @@ public class SecureFileSys extends Application {
       String DecryptedFileString = AES.decrypt(decryptedKey ,"RandomInitVector",EncryptedFileString);
       
        FileHandler.WriteFile(DecryptedFileString,"DecryptedFile.txt", false);
-       
+         JFXSnackbar snackbar = new JFXSnackbar(anchorpane);
+           snackbar.show("Generated Decrypted File", 2000);
         
    }
     
+    @FXML
     public void SelectPublicKey ()
     {
         publicFile =  SelectFile(publicLabel);
     } 
     
+    @FXML
     public void SelectPrivateKey()
     {
         privateFile = SelectFile(privateLabel);
     }
     
+    @FXML
     public void SelectRng1(){
         rng1File= SelectFile(rngLabel);
     }
     
+    @FXML
     public void SelectRng2(){
        rng2File = SelectFile(rng2Label);
     }
@@ -162,9 +213,12 @@ public class SecureFileSys extends Application {
      
   
    
+    @FXML
     public void GenerateKey ()throws Exception 
     {
         RSA.buildKeyPair();
+         JFXSnackbar snackbar = new JFXSnackbar(anchorpane);
+        snackbar.show("Generated Public and Private Keys", 2000);
     }
      public void UploadFile() {
          try{
@@ -200,6 +254,8 @@ if (selectedFile != null) {
         securefilesystem.FileHandler.WriteFile(encrypted,"encryption.kksasa",true);
  
        // securefilesystem.FileHandler.WriteFile(secret,"decryption.txt",false);
+       JFXSnackbar snackbar = new JFXSnackbar(anchorpane);
+           
 }
          }catch(Exception e)
          {};
@@ -210,6 +266,7 @@ if (selectedFile != null) {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         window = primaryStage;
         window.setResizable(false);
         window.setMaxWidth(1070);
@@ -218,6 +275,7 @@ if (selectedFile != null) {
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         
         Scene mainView = new Scene(root);
+        mainView.getStylesheets().add(getClass().getResource("main.css").toExternalForm());
         window.setScene(mainView);
         window.show();
     }

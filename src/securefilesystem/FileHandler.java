@@ -38,7 +38,7 @@ public class FileHandler {
                 text = text + line + "\n";
             }
             //remove last \n
-            text = text.substring(0, text.length() - 1);
+            //text = text.substring(0, text.length() - 1);
 
             // Always close files.
             bufferedReader.close();
@@ -93,5 +93,13 @@ public class FileHandler {
 
         }
 
+    }
+    
+    public static void clearFile(String fileName) throws IOException {
+        FileWriter fwOb = new FileWriter(fileName, false); 
+        PrintWriter pwOb = new PrintWriter(fwOb, false);
+        pwOb.flush();
+        pwOb.close();
+        fwOb.close();
     }
 }

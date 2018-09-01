@@ -1,0 +1,22 @@
+.jfx-snackbar-content{
+    -fx-background-color: #000076;
+}
+.jfx-snackbar-toast{
+    -fx-text-fill:#007EF1;
+}
+.jfx-snackbar-action{
+    -fx-text-fill: #e63e3e;
+}
+.jfx-list-cell:selected{
+        -fx-background-color: #0054CD;
+}
+.jfx-list-cell:hover{
+        -fx-background-color: #2F88D3;
+}
+.jfx-list-cell{
+        -fx-background-insets: 0.0;
+}
+.jfx-list-cell .jfx-rippler{
+    -fx-background-rippler:BLUE;
+}
+
